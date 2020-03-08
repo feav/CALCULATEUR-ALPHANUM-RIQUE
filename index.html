@@ -1,0 +1,150 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="assets/webix.min.css" type="text/css">
+    <link rel="stylesheet" href="node_modules/@mdi/font/css/materialdesignicons.min.css" type="text/css">
+
+    <script src="assets/webix.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <script type="text/javascript" charset="utf-8">
+        i = 1
+        cycle = null
+        function go() {
+
+            if (i <= $$("theDatatable").count()) { }
+            else {
+                i = 1
+            }
+
+            $$("theDatatable").select(i++)
+        }
+
+
+        webix.ui({
+            cols: [{
+                rows: [
+                    {
+                        cols: [
+                            {
+                                id: "theDate",
+                                view: "text",
+                                name: "date",
+                                label: "Date",
+                                labelPosition: "top",
+                            },
+                            {
+                                width: 50,
+                                view: "toggle", type: "icon", name: "s4",
+                                offIcon: "mdi mdi-play",
+                                onIcon: "mdi mdi-pause",
+                                click: function () {
+
+                                    console.log(this.getValue())
+                                    if (!this.getValue()) {
+
+
+                                        if ($$("theDatatable").getSelectedItem()) {
+                                            id = $$("theDatatable").getSelectedItem().id
+                                        }
+
+                                        cycle = setInterval(go, $$("theTime").getValue())
+
+                                    }
+                                    else {
+                                        clearTimeout(cycle)
+                                    }
+
+                                }
+                            },
+                            {
+                                id: "theTime",
+                                view: "text",
+                                name: "time",
+                                label: "Time",
+                                labelPosition: "top",
+                                value: 2000,
+                            },
+                            {
+                                width: 60,
+                                id: "theFullscreen",
+                                view: "button",
+                                type: "icon",
+                                icon: "mdi mdi-fullscreen mdi-24px",
+                                click: function () {
+                                    webix.fullscreen.set("theIframe");
+                                }
+                            },
+                        ]
+                    },
+
+
+                    {
+                        id: "theDatatable",
+                        view: "datatable",
+
+                        select: "row",
+                        scrollX: true,
+                        columns: [
+                            {
+                                id: "line",
+                                header: "Lignes",
+                                fillspace: true,
+                            }
+                        ],
+                        on: {
+                            onAfterSelect: function (obj) {
+
+                                var line = this.getSelectedItem().line
+
+                                var date = $$("theDate").getValue()
+
+                                var text = line
+                                if (date.length > 0) {
+                                    text = date + " " + line
+                                }
+
+                                $$("theIframe").load("engine.html?text=" + btoa(text))
+                            }
+                        }
+                    },
+                    { view: "resizer" },
+
+                    {
+                        id: "theForm",
+                        view: "form",
+                        gravity: 0.45,
+                        elements: [{
+                            view: "button",
+                            value: "Importer",
+                            id: "saveButton0",
+                            css: "webix_primary",
+                            on: {
+                                onItemClick: function () {
+                                    $$("theDatatable").clearAll()
+
+                                    var i = 1
+                                    $$("theData").getValue().split("\n").map((line) => $$("theDatatable").add({ id: i++, line: line }))
+                                },
+                            }
+                        },
+                        {
+                            id: "theData",
+                            view: "textarea",
+                        }]
+                    },
+                ]
+            },
+            { view: "resizer" },
+            {
+                gravity: 2,
+                id: "theIframe",
+                view: "iframe",
+                src: "engine.html"
+            }]
+        })
+    </script>
+</body>
+
+</html>
