@@ -133,6 +133,10 @@
                             }
                         },
                         {
+                            id: "theData",
+                            view: "textarea",
+                        },
+                        {
                             view: "button",
                             value: "Exporter",
                             id: "exportButton0",
@@ -170,10 +174,6 @@
                                     saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'EXPORT CALCULATEUR-ALPHANUM-RIQUE'+new Date()+'.xlsx');
                                 },
                             }
-                        },
-                        {
-                            id: "theData",
-                            view: "textarea",
                         }]
                     },
                 ]
