@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="assets/webix.min.css" type="text/css">
     <link rel="stylesheet" href="node_modules/@mdi/font/css/materialdesignicons.min.css" type="text/css">
 
@@ -171,7 +172,7 @@
                                         return buf;    
                                     }
 
-                                    saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'EXPORT CALCULATEUR-ALPHANUM-RIQUE'+new Date()+'.xlsx');
+                                    saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'calc_'+(+(new Date()))+'.xlsx');
                                 },
                             }
                         }]
