@@ -117,7 +117,8 @@
                         id: "theForm",
                         view: "form",
                         gravity: 0.45,
-                        elements: [{
+                        elements: [
+                        {
                             view: "button",
                             value: "Importer",
                             id: "saveButton0",
@@ -128,13 +129,24 @@
 
                                     var i = 1
                                     $$("theData").getValue().split("\n").map((line) => $$("theDatatable").add({ id: i++, line: line }))
+                                },
+                            }
+                        },
+                        {
+                            view: "button",
+                            value: "Exporter",
+                            id: "exportButton0",
+                            css: "webix_primary",
+                            on: {
+                                onItemClick: function () {
                                     var table = [];
-                                    $(".webix_column .webix_cell").each(function(index) {
-                                        generate($('input').first().val()+" "+$(this).text());
-                                        table[index] = [$(this).text(),$("#tableur #chiffre #normal #table").first().find('#res_calcul').text(),$("#tableur #chiffre #normal #table").first().find('#res_normal1').text(),$("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(),$("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(),$("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(),$("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
+                                    $values = $('textarea').first().val().split("\n");
+                                    i = 0;
+                                    $values.map(function(value){
+                                        generate($('input').first().val()+" "+value);
+                                        table[i] = [value,$("#tableur #chiffre #normal #table").first().find('#res_calcul').text(),$("#tableur #chiffre #normal #table").first().find('#res_normal1').text(),$("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(),$("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(),$("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(),$("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
+                                        i++;
                                     });
-
-                                    console.log(table);
 
                                     var wb = XLSX.utils.book_new();
                                     wb.Props = {
