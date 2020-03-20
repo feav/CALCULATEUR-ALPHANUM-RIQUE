@@ -159,33 +159,66 @@
                                     // var opt = {
                                     //     rowIndex: 4
                                     // };
-                                    var sheet = XLSX2.utils.aoa_to_sheet(table);
-
                                     i = 0;
 
                                     var colors_numbers = [111, 222, 333, 1222, 11106, 11016, 11160];
 
+                                    table_to_sheet = [];
                                     for (var i = 0; i < table.length; i++) {
                                         for (var j = 0; j < table[i].length; j++) {
                                             if(colors_numbers.includes(parseInt(table[i][j]))){
-                                                console.log("enter ndem00");
-                                                letter = String.fromCharCode(65 + j);
-                                                sheet[letter+(i+1)] = {
-                                                    t: "s",
-                                                    v: sheet[letter+(i+1)].v
-                                                };
-
-                                                sheet[letter+(i+1)].s = {
-                                                    font: {
-                                                        bold: true,
-                                                        color: {
-                                                            rgb: "FF1919"
-                                                        }
-                                                    }
-                                                };
+                                                table_to_sheet.push([table[i][j],""]);
                                             }
                                         }
                                     }
+                                    
+                                    var sheet = XLSX2.utils.aoa_to_sheet(table_to_sheet);
+                                    // var sheet = XLSX2.utils.aoa_to_sheet(table);
+                                    // 
+                                    for (var i = 0; i < table_to_sheet.length; i++) {
+                                        letter = "A";
+                                        sheet[letter+(i+1)] = {
+                                            t: "s",
+                                            v: sheet[letter+(i+1)].v
+                                        };
+
+                                        sheet[letter+(i+1)].s = {
+                                            font: {
+                                                bold: true,
+                                                color: {
+                                                    rgb: "FF1919"
+                                                }
+                                            }
+                                        };
+                                    }
+
+                                    // for (var i = 0; i < table.length; i++) {
+                                    //     for (var j = 0; j < table[i].length; j++) {
+                                    //         if(colors_numbers.includes(parseInt(table[i][j]))){
+                                    //             letter = String.fromCharCode(65 + j);
+                                    //             sheet[letter+(i+1)] = {
+                                    //                 t: "s",
+                                    //                 v: sheet[letter+(i+1)].v
+                                    //             };
+
+                                    //             sheet[letter+(i+1)].s = {
+                                    //                 font: {
+                                    //                     bold: true,
+                                    //                     color: {
+                                    //                         rgb: "FF1919"
+                                    //                     }
+                                    //                 }
+                                    //             };
+                                    //         }
+                                    //         else{
+                                    //             letter = String.fromCharCode(65 + j);
+                                    //             sheet[letter+(i+1)] = {
+                                    //                 t: "s",
+                                    //                 v: ""
+                                    //             };
+                                    //         }
+                                    //     }
+                                    // }
 
                                     // $values.map(function(value){
                                     //     i++;
