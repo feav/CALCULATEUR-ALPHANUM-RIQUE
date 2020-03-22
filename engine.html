@@ -267,7 +267,8 @@
             }
         };
 
-        $(".tableur").val(atob(getUrlParameter('text')))
+        if(getUrlParameter('text') != undefined)
+            $(".tableur").val(atob(getUrlParameter('text')))
         $('.tableur').trigger('keyup');
     </script>
 

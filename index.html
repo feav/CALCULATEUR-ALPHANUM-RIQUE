@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="assets/webix.min.css" type="text/css">
     <link rel="stylesheet" href="node_modules/@mdi/font/css/materialdesignicons.min.css" type="text/css">
+    <link rel="stylesheet" href="assets/toastr.min.css" type="text/css">
 
     <script src="assets/jquery.min.js"></script>
     <script src="assets/xlsx.extendscript.js"></script>
@@ -11,6 +12,7 @@
     <script src="assets/export.js"></script>
     <!-- <script src="assets/FileSaver.min.js"></script> -->
     <script src="assets/webix.min.js" type="text/javascript"></script>
+    <script src="assets/toastr.min.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -159,163 +161,49 @@
                                     // var opt = {
                                     //     rowIndex: 4
                                     // };
-                                    i = 0;
+                                    compteur = 0;
 
                                     var colors_numbers = [111, 222, 333, 1222, 11106, 11016, 11160];
 
                                     table_to_sheet = [];
+
                                     for (var i = 0; i < table.length; i++) {
-                                        for (var j = 0; j < table[i].length; j++) {
+                                        for (var j = 0; j < table[i].length; j++){
                                             if(colors_numbers.includes(parseInt(table[i][j]))){
-                                                table_to_sheet.push([table[i][j],""]);
+                                                table_to_sheet.push(table[i]);
+                                                continue;
                                             }
                                         }
                                     }
                                     
                                     var sheet = XLSX2.utils.aoa_to_sheet(table_to_sheet);
-                                    // var sheet = XLSX2.utils.aoa_to_sheet(table);
-                                    // 
-                                    for (var i = 0; i < table_to_sheet.length; i++) {
-                                        letter = "A";
-                                        sheet[letter+(i+1)] = {
-                                            t: "s",
-                                            v: sheet[letter+(i+1)].v
-                                        };
 
-                                        sheet[letter+(i+1)].s = {
-                                            font: {
-                                                bold: true,
-                                                color: {
-                                                    rgb: "FF1919"
-                                                }
+                                    for (var i = 0; i < table_to_sheet.length; i++) {
+                                        for (var j = 0; j < table_to_sheet[i].length; j++) {
+                                            if(colors_numbers.includes(parseInt(table_to_sheet[i][j]))){
+                                                console.log("enter ndem00");
+                                                letter = String.fromCharCode(65 + j);
+                                                sheet[letter+(i+1)] = {
+                                                    t: "s",
+                                                    v: sheet[letter+(i+1)].v
+                                                };
+
+                                                sheet[letter+(i+1)].s = {
+                                                    font: {
+                                                        bold: true,
+                                                        color: {
+                                                            rgb: "FF1919"
+                                                        }
+                                                    }
+                                                };
                                             }
-                                        };
+                                        }
                                     }
 
-                                    // for (var i = 0; i < table.length; i++) {
-                                    //     for (var j = 0; j < table[i].length; j++) {
-                                    //         if(colors_numbers.includes(parseInt(table[i][j]))){
-                                    //             letter = String.fromCharCode(65 + j);
-                                    //             sheet[letter+(i+1)] = {
-                                    //                 t: "s",
-                                    //                 v: sheet[letter+(i+1)].v
-                                    //             };
-
-                                    //             sheet[letter+(i+1)].s = {
-                                    //                 font: {
-                                    //                     bold: true,
-                                    //                     color: {
-                                    //                         rgb: "FF1919"
-                                    //                     }
-                                    //                 }
-                                    //             };
-                                    //         }
-                                    //         else{
-                                    //             letter = String.fromCharCode(65 + j);
-                                    //             sheet[letter+(i+1)] = {
-                                    //                 t: "s",
-                                    //                 v: ""
-                                    //             };
-                                    //         }
-                                    //     }
-                                    // }
-
-                                    // $values.map(function(value){
-                                    //     i++;
-
-                                    //     sheet["A"+i] = {
-                                    //         t: "s",
-                                    //         v: sheet["A"+i].v
-                                    //     };
-
-                                    //     sheet["A"+i].s = {
-                                    //         font: {
-                                    //             sz: 12,
-                                    //             bold: true,
-                                    //             underline: true,
-                                    //             color: {
-                                    //                 rgb: "FFFFAA00"
-                                    //             }
-                                    //         },
-                                    //         alignment: {
-                                    //             horizontal: "center",
-                                    //             vertical: "center",
-                                    //             wrap_text: true
-                                    //         },
-                                    //         // fill: {
-                                    //         //     bgColor: {
-                                    //         //         rgb: 'ffff00'
-                                    //         //     }
-                                    //         // }
-                                    //     };
-                                    // });
-
-                                    // sheet["A9"].s = {
-                                    //     font: {
-                                    //         sz: 13,
-                                    //         bold: true,
-                                    //         color: {
-                                    //             rgb: "FFFFAA00"
-                                    //         }
-                                    //     },
-                                    //     alignment: {
-                                    //         horizontal: "center",
-                                    //         vertical: "center",
-                                    //         wrap_text: true
-                                    //     }
-                                    // };
-
-                                    // sheet["!cols"] = [{
-                                    //     wpx: 70
-                                    // }, {
-                                    //     wpx: 70
-                                    // }, {
-                                    //     wpx: 70
-                                    // }, {
-                                    //     wpx: 70
-                                    // }, {
-                                    //     wpx: 150
-                                    // }, {
-                                    //     wpx: 120
-                                    // }];
-
-                                    openDownloadDialog(sheet2blob(sheet), 'calc_'+(+(new Date()))+'.xlsx');
-
-                                    // var wb = XLSX2.utils.book_new();
-                                    // wb.Props = {
-                                    //     Title: "Export calc date "+$('input').first().val(),
-                                    //     Subject: "Test",
-                                    //     Author: "Test",
-                                    //     CreatedDate: new Date()
-                                    // };
-                                    // wb.SheetNames.push("Date"+$('input').first().val());
-                                    // var ws = XLSX2.utils.aoa_to_sheet(table);
-                                    // ws["A1"] = {
-                                    //     t: "s",
-                                    //     v: ws["A1"].v
-                                    // };
-                                    // ws["A1"].s = {
-                                    //     font: {
-                                    //         sz: 24,
-                                    //         bold: true,
-                                    //         underline: true,
-                                    //         color: {
-                                    //             rgb: "FFFFAA00"
-                                    //         }
-                                    //     }
-                                    // };
-                                    // console.log(ws["A1"]);
-                                    // wb.Sheets["Date"+$('input').first().val()] = ws;
-                                    // var wbout = XLSX2.write(wb, {bookType:'xlsx',  type: 'binary'});
-
-                                    // function s2ab(s) { 
-                                    //     var buf = new ArrayBuffer(s.length); //convert s to arrayBuffer
-                                    //     var view = new Uint8Array(buf);  //create uint8array as viewer
-                                    //     for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; //convert to octet
-                                    //     return buf;    
-                                    // }
-
-                                    // saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'calc_'+(+(new Date()))+'.xlsx');
+                                    if(table_to_sheet.length<=0)
+                                        toastr.error("Aucune ligne exacte n'a été générée");
+                                    else
+                                        openDownloadDialog(sheet2blob(sheet), 'calc_'+(+(new Date()))+'.xlsx');
                                 },
                             }
                         }]
