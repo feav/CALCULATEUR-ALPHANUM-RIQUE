@@ -34,7 +34,7 @@
 
         webix.ui({
             cols: [{
-                width: 550,
+                width: 700,
                 rows: [
                     {
                         cols: [
@@ -103,33 +103,95 @@
                         ]
                     },
                     {
-                        id: "theDatatable",
-                        view: "datatable",
-
-                        select: "row",
-                        scrollX: true,
-                        columns: [
+                        cols: [
                             {
-                                id: "line",
-                                header: "Lignes",
-                                fillspace: true,
-                            }
-                        ],
-                        on: {
-                            onAfterSelect: function (obj) {
+                                id: "theDatatable",
+                                view: "datatable",
 
-                                var line = this.getSelectedItem().line
+                                select: "row",
+                                scrollX: true,
+                                columns: [
+                                    {
+                                        id: "line",
+                                        header: "Case 1",
+                                        fillspace: true,
+                                    }
+                                ],
+                                on: {
+                                    onAfterSelect: function (obj) {
 
-                                var date = $$("theDate").getValue()
+                                        var line = this.getSelectedItem().line
 
-                                var text = line
-                                if (date.length > 0) {
-                                    text = date + " " + line
+                                        var date = $$("theDate").getValue()
+
+                                        var text = line
+                                        if (date.length > 0) {
+                                            text = date + " " + line
+                                        }
+
+                                        $$("theIframe").load("engine.html?text=" + btoa(text))
+                                    }
                                 }
+                            },
+                            {
+                                id: "theDatatable2",
+                                view: "datatable",
 
-                                $$("theIframe").load("engine.html?text=" + btoa(text))
+                                select: "row",
+                                scrollX: true,
+                                columns: [
+                                    {
+                                        id: "line2",
+                                        header: "Case 2",
+                                        fillspace: true,
+                                    }
+                                ],
+                                on: {
+                                    onAfterSelect: function (obj) {
+
+                                        var line = this.getSelectedItem().line2
+
+                                        var date = $$("theDate2").getValue()
+
+                                        var text = line
+                                        if (date.length > 0) {
+                                            text = date + " " + line
+                                        }
+
+                                        $$("theIframe").load("engine.html?text=" + btoa(text))
+                                    }
+                                }
+                            },
+                            {
+                                id: "theDatatable3",
+                                view: "datatable",
+
+                                select: "row",
+                                scrollX: true,
+                                columns: [
+                                    {
+                                        id: "line3",
+                                        header: "Case 3",
+                                        fillspace: true,
+                                    }
+                                ],
+                                on: {
+                                    onAfterSelect: function (obj) {
+
+                                        var line = this.getSelectedItem().line3
+
+                                        var date = $$("theDate3").getValue()
+
+                                        var text = line
+                                        if (date.length > 0) {
+                                            text = date + " " + line
+                                        }
+
+                                        $$("theIframe").load("engine.html?text=" + btoa(text))
+                                    }
+                                }
                             }
-                        }
+                        ]
                     },
                     { view: "resizer" },
                     {
@@ -145,9 +207,13 @@
                             on: {
                                 onItemClick: function () {
                                     $$("theDatatable").clearAll()
+                                    $$("theDatatable2").clearAll()
+                                    $$("theDatatable3").clearAll()
 
                                     var i = 1
                                     $$("theData").getValue().split("\n").map((line) => $$("theDatatable").add({ id: i++, line: line }))
+                                    $$("theData").getValue().split("\n").map((line) => $$("theDatatable2").add({ id: i++, line2: line }))
+                                    $$("theData").getValue().split("\n").map((line) => $$("theDatatable3").add({ id: i++, line3: line }))
                                 },
                             }
                         },
