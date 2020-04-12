@@ -31,6 +31,8 @@
             $$("theDatatable").select(i++)
         }
 
+        var teams = [];
+        var scores = [];
 
         webix.ui({
             cols: [{
@@ -126,7 +128,8 @@
 
                                         var text = line
                                         if (date.length > 0) {
-                                            text = date + " " + line
+                                            // text = date + " " + line
+                                            text = line
                                         }
 
                                         $$("theIframe").load("engine.html?text=" + btoa(text))
@@ -146,49 +149,54 @@
                                         fillspace: true,
                                     }
                                 ],
+                                // on: {
+                                //     onAfterSelect: function (obj) {
+
+                                //         var line = this.getSelectedItem().line2
+
+                                //         var date = $$("theDate2").getValue()
+
+                                //         var text = line
+                                //         if (date.length > 0) {
+                                //             text = date + " " + line
+                                //         }
+
+                                //         $$("theIframe").load("engine.html?text=" + btoa(text))
+                                //     }
+                                // }
+                            },
+                        ]
+                    },
+                    {
+                        cols: [
+                            {
+                                view: "button",
+                                value: "Importer",
+                                id: "saveButton1",
+                                css: "webix_primary",
                                 on: {
-                                    onAfterSelect: function (obj) {
+                                    onItemClick: function () {
+                                        $$("theDatatable").clearAll()
 
-                                        var line = this.getSelectedItem().line2
-
-                                        var date = $$("theDate2").getValue()
-
-                                        var text = line
-                                        if (date.length > 0) {
-                                            text = date + " " + line
-                                        }
-
-                                        $$("theIframe").load("engine.html?text=" + btoa(text))
-                                    }
+                                        var i = 1
+                                        teams = $$("theData").getValue().split("\n");
+                                        $$("theData").getValue().split("\n").map((line) => $$("theDatatable").add({ id: i++, line: line }))
+                                    },
                                 }
                             },
                             {
-                                id: "theDatatable3",
-                                view: "datatable",
-
-                                select: "row",
-                                scrollX: true,
-                                columns: [
-                                    {
-                                        id: "line3",
-                                        header: "Case 3",
-                                        fillspace: true,
-                                    }
-                                ],
+                                view: "button",
+                                value: "Importer",
+                                id: "saveButton2",
+                                css: "webix_primary",
                                 on: {
-                                    onAfterSelect: function (obj) {
+                                    onItemClick: function () {
+                                        $$("theDatatable2").clearAll()
 
-                                        var line = this.getSelectedItem().line3
-
-                                        var date = $$("theDate3").getValue()
-
-                                        var text = line
-                                        if (date.length > 0) {
-                                            text = date + " " + line
-                                        }
-
-                                        $$("theIframe").load("engine.html?text=" + btoa(text))
-                                    }
+                                        var i = 1
+                                        scores = $$("theData").getValue().split("\n");
+                                        $$("theData").getValue().split("\n").map((line) => $$("theDatatable2").add({ id: i++, line2: line }))
+                                    },
                                 }
                             }
                         ]
@@ -199,24 +207,22 @@
                         view: "form",
                         gravity: 0.45,
                         elements: [
-                        {
-                            view: "button",
-                            value: "Importer",
-                            id: "saveButton0",
-                            css: "webix_primary",
-                            on: {
-                                onItemClick: function () {
-                                    $$("theDatatable").clearAll()
-                                    $$("theDatatable2").clearAll()
-                                    $$("theDatatable3").clearAll()
+                        // {
+                        //     view: "button",
+                        //     value: "Importer",
+                        //     id: "saveButton0",
+                        //     css: "webix_primary",
+                        //     on: {
+                        //         onItemClick: function () {
+                        //             $$("theDatatable").clearAll()
+                        //             $$("theDatatable2").clearAll()
 
-                                    var i = 1
-                                    $$("theData").getValue().split("\n").map((line) => $$("theDatatable").add({ id: i++, line: line }))
-                                    $$("theData").getValue().split("\n").map((line) => $$("theDatatable2").add({ id: i++, line2: line }))
-                                    $$("theData").getValue().split("\n").map((line) => $$("theDatatable3").add({ id: i++, line3: line }))
-                                },
-                            }
-                        },
+                        //             var i = 1
+                        //             $$("theData").getValue().split("\n").map((line) => $$("theDatatable").add({ id: i++, line: line }))
+                        //             $$("theData").getValue().split("\n").map((line) => $$("theDatatable2").add({ id: i++, line2: line }))
+                        //         },
+                        //     }
+                        // },
                         {
                             id: "theData",
                             view: "textarea",
@@ -231,22 +237,42 @@
                                     var table = [];
                                     var table2 = [];
                                     var table3 = [];
-                                    $values = $('textarea').first().val().split("\n");
+                                    // $values = $('textarea').first().val().split("\n");
+                                    $values = teams;
                                     i = 0;
+                                    j = 0;
                                     $values.map(function(value){
                                         generate($$("theDate").getValue()+" "+value);
                                         table[i] = [value,$("#tableur #chiffre #normal #table").first().find('#res_calcul').text(),$("#tableur #chiffre #normal #table").first().find('#res_normal1').text(),$("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(),$("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(),$("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(),$("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
-                                        table[i][0] = "REGINA ELENA gagne "+table[i][0]+" "+$$("theDate").getValue();
-                                        i++;
-                                        generate($$("theDate2").getValue()+" "+value);
-                                        table[i] = [value,$("#tableur #chiffre #normal #table").first().find('#res_calcul').text(),$("#tableur #chiffre #normal #table").first().find('#res_normal1').text(),$("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(),$("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(),$("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(),$("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
-                                        table[i][0] = "REGINA ELENA gagne "+table[i][0]+" "+$$("theDate").getValue();
-                                        i++;
-                                        generate($$("theDate3").getValue()+" "+value);
-                                        table[i] = [value,$("#tableur #chiffre #normal #table").first().find('#res_calcul').text(),$("#tableur #chiffre #normal #table").first().find('#res_normal1').text(),$("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(),$("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(),$("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(),$("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
-                                        table[i][0] = "REGINA ELENA gagne "+table[i][0]+" "+$$("theDate").getValue();
+                                        scores.map(function(val){
+                                            table2[j] = [value,$("#tableur #chiffre #normal #table").first().find('#res_calcul').text(),$("#tableur #chiffre #normal #table").first().find('#res_normal1').text(),$("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(),$("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(),$("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(),$("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
+                                            table2[j][0] = table2[j][0]+" "+val+" "+$$("theDate").getValue();
+                                            j++;
+                                        });
                                         i++;
                                     });
+                                    $values.map(function(value){
+                                        generate($$("theDate2").getValue()+" "+value);
+                                        table[i] = [value,$("#tableur #chiffre #normal #table").first().find('#res_calcul').text(),$("#tableur #chiffre #normal #table").first().find('#res_normal1').text(),$("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(),$("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(),$("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(),$("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
+                                        scores.map(function(val){
+                                            table2[j] = [value,$("#tableur #chiffre #normal #table").first().find('#res_calcul').text(),$("#tableur #chiffre #normal #table").first().find('#res_normal1').text(),$("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(),$("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(),$("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(),$("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
+                                            table2[j][0] = table2[j][0]+" "+val+" "+$$("theDate2").getValue();
+                                            j++;
+                                        });
+                                        i++;
+                                    });
+                                    $values.map(function(value){
+                                        generate($$("theDate3").getValue()+" "+value);
+                                        table[i] = [value,$("#tableur #chiffre #normal #table").first().find('#res_calcul').text(),$("#tableur #chiffre #normal #table").first().find('#res_normal1').text(),$("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(),$("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(),$("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(),$("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
+                                        scores.map(function(val){
+                                            table2[j] = [value,$("#tableur #chiffre #normal #table").first().find('#res_calcul').text(),$("#tableur #chiffre #normal #table").first().find('#res_normal1').text(),$("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(),$("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(),$("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(),$("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
+                                            table2[j][0] = table2[j][0]+" "+val+" "+$$("theDate3").getValue();
+                                            j++;
+                                        });
+                                        i++;
+                                    });
+
+                                    console.log(table2);
 
                                     //var table1 = document.querySelector("#table1");
                                     // var opt = {
@@ -258,10 +284,10 @@
 
                                     table_to_sheet = [];
 
-                                    for (var i = 0; i < table.length; i++) {
-                                        for (var j = 0; j < table[i].length; j++){
-                                            if(colors_numbers.includes(parseInt(table[i][j]))){
-                                                table_to_sheet.push(table[i]);
+                                    for (var i = 0; i < table2.length; i++) {
+                                        for (var j = 0; j < table2[i].length; j++){
+                                            if(colors_numbers.includes(parseInt(table2[i][j]))){
+                                                table_to_sheet.push(table2[i]);
                                                 continue;
                                             }
                                         }
