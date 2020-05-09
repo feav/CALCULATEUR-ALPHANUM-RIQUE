@@ -21,10 +21,10 @@
     <script type="text/javascript" charset="utf-8">
         i = 1
         cycle = null
+
         function go() {
 
-            if (i <= $$("theDatatable").count()) { }
-            else {
+            if (i <= $$("theDatatable").count()) {} else {
                 i = 1
             }
 
@@ -37,176 +37,166 @@
         webix.ui({
             cols: [{
                 width: 600,
-                rows: [
-                    {
-                        cols: [
-                            {
-                                id: "theDate",
-                                view: "text",
-                                name: "date",
-                                label: "Date 1",
-                                labelPosition: "top",
-                            },
-                            {
-                                id: "theDate2",
-                                view: "text",
-                                name: "date2",
-                                label: "Date 2",
-                                labelPosition: "top",
-                            },
-                            {
-                                id: "theDate3",
-                                view: "text",
-                                name: "date3",
-                                label: "Date 3",
-                                labelPosition: "top",
-                            },
-                            // {
-                            //     width: 50,
-                            //     view: "toggle", type: "icon", name: "s4",
-                            //     offIcon: "mdi mdi-play",
-                            //     onIcon: "mdi mdi-pause",
-                            //     click: function () {
+                rows: [{
+                    cols: [{
+                            id: "theDate",
+                            view: "text",
+                            name: "date",
+                            label: "Date 1",
+                            labelPosition: "top",
+                        }, {
+                            id: "theDate2",
+                            view: "text",
+                            name: "date2",
+                            label: "Date 2",
+                            labelPosition: "top",
+                        }, {
+                            id: "theDate3",
+                            view: "text",
+                            name: "date3",
+                            label: "Date 3",
+                            labelPosition: "top",
+                        },
+                        // {
+                        //     width: 50,
+                        //     view: "toggle", type: "icon", name: "s4",
+                        //     offIcon: "mdi mdi-play",
+                        //     onIcon: "mdi mdi-pause",
+                        //     click: function () {
 
-                            //         if (!this.getValue()) {
+                        //         if (!this.getValue()) {
 
 
-                            //             if ($$("theDatatable").getSelectedItem()) {
-                            //                 id = $$("theDatatable").getSelectedItem().id
-                            //             }
+                        //             if ($$("theDatatable").getSelectedItem()) {
+                        //                 id = $$("theDatatable").getSelectedItem().id
+                        //             }
 
-                            //             cycle = setInterval(go, $$("theTime").getValue())
+                        //             cycle = setInterval(go, $$("theTime").getValue())
 
-                            //         }
-                            //         else {
-                            //             clearTimeout(cycle)
-                            //         }
+                        //         }
+                        //         else {
+                        //             clearTimeout(cycle)
+                        //         }
 
-                            //     }
-                            // },
-                            // {
-                            //     id: "theTime",
-                            //     view: "text",
-                            //     name: "time",
-                            //     label: "Time",
-                            //     labelPosition: "top",
-                            //     value: 2000,
-                            // },
-                            {
-                                width: 60,
-                                id: "theFullscreen",
-                                view: "button",
-                                type: "icon",
-                                icon: "mdi mdi-fullscreen mdi-24px",
-                                click: function () {
-                                    webix.fullscreen.set("theIframe");
-                                }
-                            },
-                        ]
-                    },
-                    {
-                        cols: [
-                            {
-                                id: "theDatatable",
-                                view: "datatable",
-
-                                select: "row",
-                                scrollX: true,
-                                columns: [
-                                    {
-                                        id: "line",
-                                        header: "Case 1",
-                                        fillspace: true,
-                                    }
-                                ],
-                                on: {
-                                    onAfterSelect: function (obj) {
-
-                                        var line = this.getSelectedItem().line
-
-                                        var date = $$("theDate").getValue()
-
-                                        var text = line
-                                        if (date.length > 0) {
-                                            // text = date + " " + line
-                                            text = line
-                                        }
-
-                                        $$("theIframe").load("engine.html?text=" + btoa(text))
-                                    }
-                                }
-                            },
-                            {
-                                id: "theDatatable2",
-                                view: "datatable",
-
-                                select: "row",
-                                scrollX: true,
-                                columns: [
-                                    {
-                                        id: "line2",
-                                        header: "Case 2",
-                                        fillspace: true,
-                                    }
-                                ],
-                                // on: {
-                                //     onAfterSelect: function (obj) {
-
-                                //         var line = this.getSelectedItem().line2
-
-                                //         var date = $$("theDate2").getValue()
-
-                                //         var text = line
-                                //         if (date.length > 0) {
-                                //             text = date + " " + line
-                                //         }
-
-                                //         $$("theIframe").load("engine.html?text=" + btoa(text))
-                                //     }
-                                // }
-                            },
-                        ]
-                    },
-                    {
-                        cols: [
-                            {
-                                view: "button",
-                                value: "Importer",
-                                id: "saveButton1",
-                                css: "webix_primary",
-                                on: {
-                                    onItemClick: function () {
-                                        $$("theDatatable").clearAll()
-
-                                        var i = 1
-                                        teams = $$("theData").getValue().split("\n");
-                                        $$("theData").getValue().split("\n").map((line) => $$("theDatatable").add({ id: i++, line: line }))
-                                    },
-                                }
-                            },
-                            {
-                                view: "button",
-                                value: "Importer",
-                                id: "saveButton2",
-                                css: "webix_primary",
-                                on: {
-                                    onItemClick: function () {
-                                        $$("theDatatable2").clearAll()
-
-                                        var i = 1
-                                        scores = $$("theData").getValue().split("\n");
-                                        $$("theData").getValue().split("\n").map((line) => $$("theDatatable2").add({ id: i++, line2: line }))
-                                    },
-                                }
+                        //     }
+                        // },
+                        // {
+                        //     id: "theTime",
+                        //     view: "text",
+                        //     name: "time",
+                        //     label: "Time",
+                        //     labelPosition: "top",
+                        //     value: 2000,
+                        // },
+                        {
+                            width: 60,
+                            id: "theFullscreen",
+                            view: "button",
+                            type: "icon",
+                            icon: "mdi mdi-fullscreen mdi-24px",
+                            click: function() {
+                                webix.fullscreen.set("theIframe");
                             }
-                        ]
-                    },
-                    { view: "resizer" },
-                    {
-                        id: "theForm",
-                        view: "form",
-                        gravity: 0.45,
-                        elements: [
+                        },
+                    ]
+                }, {
+                    cols: [{
+                        id: "theDatatable",
+                        view: "datatable",
+
+                        select: "row",
+                        scrollX: true,
+                        columns: [{
+                            id: "line",
+                            header: "Case 1",
+                            fillspace: true,
+                        }],
+                        on: {
+                            onAfterSelect: function(obj) {
+
+                                var line = this.getSelectedItem().line
+
+                                var date = $$("theDate").getValue()
+
+                                var text = line
+                                if (date.length > 0) {
+                                    // text = date + " " + line
+                                    text = line
+                                }
+
+                                $$("theIframe").load("engine.html?text=" + btoa(text))
+                            }
+                        }
+                    }, {
+                        id: "theDatatable2",
+                        view: "datatable",
+
+                        select: "row",
+                        scrollX: true,
+                        columns: [{
+                            id: "line2",
+                            header: "Case 2",
+                            fillspace: true,
+                        }],
+                        // on: {
+                        //     onAfterSelect: function (obj) {
+
+                        //         var line = this.getSelectedItem().line2
+
+                        //         var date = $$("theDate2").getValue()
+
+                        //         var text = line
+                        //         if (date.length > 0) {
+                        //             text = date + " " + line
+                        //         }
+
+                        //         $$("theIframe").load("engine.html?text=" + btoa(text))
+                        //     }
+                        // }
+                    }, ]
+                }, {
+                    cols: [{
+                        view: "button",
+                        value: "Importer",
+                        id: "saveButton1",
+                        css: "webix_primary",
+                        on: {
+                            onItemClick: function() {
+                                $$("theDatatable").clearAll()
+
+                                var i = 1
+                                teams = $$("theData").getValue().split("\n");
+                                $$("theData").getValue().split("\n").map((line) => $$("theDatatable").add({
+                                    id: i++,
+                                    line: line
+                                }))
+                            },
+                        }
+                    }, {
+                        view: "button",
+                        value: "Importer",
+                        id: "saveButton2",
+                        css: "webix_primary",
+                        on: {
+                            onItemClick: function() {
+                                $$("theDatatable2").clearAll()
+
+                                var i = 1
+                                scores = $$("theData").getValue().split("\n");
+                                $$("theData").getValue().split("\n").map((line) => $$("theDatatable2").add({
+                                    id: i++,
+                                    line2: line
+                                }))
+                            },
+                        }
+                    }]
+                }, {
+                    view: "resizer"
+                }, {
+                    id: "theForm",
+                    view: "form",
+                    gravity: 0.45,
+                    elements: [
                         // {
                         //     view: "button",
                         //     value: "Importer",
@@ -226,14 +216,13 @@
                         {
                             id: "theData",
                             view: "textarea",
-                        },
-                        {
+                        }, {
                             view: "button",
                             value: "Exporter",
                             id: "exportButton0",
                             css: "webix_primary",
                             on: {
-                                onItemClick: function () {
+                                onItemClick: function() {
                                     var table = [];
                                     var table2 = [];
                                     var table3 = [];
@@ -241,36 +230,54 @@
                                     $values = teams;
                                     i = 0;
                                     j = 0;
-                                    $values.map(function(value){
-                                        generate($$("theDate").getValue()+" "+value);
-                                        table[i] = [value,$("#tableur #chiffre #normal #table").first().find('#res_calcul').text(),$("#tableur #chiffre #normal #table").first().find('#res_normal1').text(),$("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(),$("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(),$("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(),$("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
-                                        scores.map(function(val){
-                                            table2[j] = [value,$("#tableur #chiffre #normal #table").first().find('#res_calcul').text(),$("#tableur #chiffre #normal #table").first().find('#res_normal1').text(),$("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(),$("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(),$("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(),$("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
-                                            table2[j][0] = table2[j][0]+" "+val+" "+$$("theDate").getValue();
+
+                                    $values.map(function(value) {
+                                        scores.map(function(val) {
+                                            generate($$("theDate").getValue() + " " + value + " " + val);
+                                            table2[j] = [value, $("#tableur #chiffre #normal #table").first().find('#res_calcul').text(), $("#tableur #chiffre #normal #table").first().find('#res_normal1').text(), $("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(), $("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(), $("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(), $("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
+                                            table2[j][0] = table2[j][0] + " " + val + " " + $$("theDate").getValue();
+                                            j++;
+                                            generate($$("theDate2").getValue() + " " + value + " " + val);
+                                            table2[j] = [value, $("#tableur #chiffre #normal #table").first().find('#res_calcul').text(), $("#tableur #chiffre #normal #table").first().find('#res_normal1').text(), $("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(), $("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(), $("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(), $("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
+                                            table2[j][0] = table2[j][0] + " " + val + " " + $$("theDate2").getValue();
+                                            j++;
+                                            generate($$("theDate3").getValue() + " " + value + " " + val);
+                                            table2[j] = [value, $("#tableur #chiffre #normal #table").first().find('#res_calcul').text(), $("#tableur #chiffre #normal #table").first().find('#res_normal1').text(), $("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(), $("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(), $("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(), $("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
+                                            table2[j][0] = table2[j][0] + " " + val + " " + $$("theDate3").getValue();
                                             j++;
                                         });
-                                        i++;
                                     });
-                                    $values.map(function(value){
-                                        generate($$("theDate2").getValue()+" "+value);
-                                        table[i] = [value,$("#tableur #chiffre #normal #table").first().find('#res_calcul').text(),$("#tableur #chiffre #normal #table").first().find('#res_normal1').text(),$("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(),$("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(),$("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(),$("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
-                                        scores.map(function(val){
-                                            table2[j] = [value,$("#tableur #chiffre #normal #table").first().find('#res_calcul').text(),$("#tableur #chiffre #normal #table").first().find('#res_normal1').text(),$("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(),$("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(),$("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(),$("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
-                                            table2[j][0] = table2[j][0]+" "+val+" "+$$("theDate2").getValue();
-                                            j++;
-                                        });
-                                        i++;
-                                    });
-                                    $values.map(function(value){
-                                        generate($$("theDate3").getValue()+" "+value);
-                                        table[i] = [value,$("#tableur #chiffre #normal #table").first().find('#res_calcul').text(),$("#tableur #chiffre #normal #table").first().find('#res_normal1').text(),$("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(),$("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(),$("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(),$("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
-                                        scores.map(function(val){
-                                            table2[j] = [value,$("#tableur #chiffre #normal #table").first().find('#res_calcul').text(),$("#tableur #chiffre #normal #table").first().find('#res_normal1').text(),$("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(),$("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(),$("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(),$("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
-                                            table2[j][0] = table2[j][0]+" "+val+" "+$$("theDate3").getValue();
-                                            j++;
-                                        });
-                                        i++;
-                                    });
+
+                                    // $values.map(function(value) {
+                                    //     generate($$("theDate").getValue() + " " + value);
+                                    //     table[i] = [value, $("#tableur #chiffre #normal #table").first().find('#res_calcul').text(), $("#tableur #chiffre #normal #table").first().find('#res_normal1').text(), $("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(), $("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(), $("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(), $("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
+                                    //     scores.map(function(val) {
+                                    //         table2[j] = [value, $("#tableur #chiffre #normal #table").first().find('#res_calcul').text(), $("#tableur #chiffre #normal #table").first().find('#res_normal1').text(), $("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(), $("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(), $("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(), $("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
+                                    //         table2[j][0] = table2[j][0] + " " + val + " " + $$("theDate").getValue();
+                                    //         j++;
+                                    //     });
+                                    //     i++;
+                                    // });
+                                    // $values.map(function(value) {
+                                    //     generate($$("theDate2").getValue() + " " + value);
+                                    //     table[i] = [value, $("#tableur #chiffre #normal #table").first().find('#res_calcul').text(), $("#tableur #chiffre #normal #table").first().find('#res_normal1').text(), $("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(), $("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(), $("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(), $("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
+                                    //     scores.map(function(val) {
+                                    //         table2[j] = [value, $("#tableur #chiffre #normal #table").first().find('#res_calcul').text(), $("#tableur #chiffre #normal #table").first().find('#res_normal1').text(), $("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(), $("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(), $("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(), $("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
+                                    //         table2[j][0] = table2[j][0] + " " + val + " " + $$("theDate2").getValue();
+                                    //         j++;
+                                    //     });
+                                    //     i++;
+                                    // });
+                                    // $values.map(function(value) {
+                                    //     generate($$("theDate3").getValue() + " " + value);
+                                    //     table[i] = [value, $("#tableur #chiffre #normal #table").first().find('#res_calcul').text(), $("#tableur #chiffre #normal #table").first().find('#res_normal1').text(), $("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(), $("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(), $("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(), $("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
+                                    //     scores.map(function(val) {
+                                    //         table2[j] = [value, $("#tableur #chiffre #normal #table").first().find('#res_calcul').text(), $("#tableur #chiffre #normal #table").first().find('#res_normal1').text(), $("#tableur #chiffre #normal #table").first().find('#res_nostra_normal').text(), $("#tableur #chiffre #inverse #table").first().find('#res_inverse1').text(), $("#tableur #chiffre #inverse #table").first().find('#res_nostra_inverse').text(), $("#tableur #chiffre #inverse #table").first().find('#res_calcul_inverse').text()];
+                                    //         table2[j][0] = table2[j][0] + " " + val + " " + $$("theDate3").getValue();
+                                    //         j++;
+                                    //     });
+                                    //     i++;
+                                    // });
 
                                     console.log(table2);
 
@@ -285,28 +292,28 @@
                                     table_to_sheet = [];
 
                                     for (var i = 0; i < table2.length; i++) {
-                                        for (var j = 0; j < table2[i].length; j++){
-                                            if(colors_numbers.includes(parseInt(table2[i][j]))){
+                                        for (var j = 0; j < table2[i].length; j++) {
+                                            if (colors_numbers.includes(parseInt(table2[i][j]))) {
                                                 table_to_sheet.push(table2[i]);
                                                 continue;
                                             }
                                         }
                                     }
-                                    
+
                                     var sheet = XLSX2.utils.aoa_to_sheet(table_to_sheet);
 
                                     for (var i = 0; i < table_to_sheet.length; i++) {
                                         for (var j = 0; j < table_to_sheet[i].length; j++) {
 
-                                            if(colors_numbers.includes(parseInt(table_to_sheet[i][j]))){
+                                            if (colors_numbers.includes(parseInt(table_to_sheet[i][j]))) {
 
                                                 letter = String.fromCharCode(65 + j);
-                                                sheet[letter+(i+1)] = {
+                                                sheet[letter + (i + 1)] = {
                                                     t: "s",
-                                                    v: sheet[letter+(i+1)].v
+                                                    v: sheet[letter + (i + 1)].v
                                                 };
 
-                                                sheet[letter+(i+1)].s = {
+                                                sheet[letter + (i + 1)].s = {
                                                     font: {
                                                         bold: true,
                                                         color: {
@@ -318,18 +325,18 @@
                                         }
                                     }
 
-                                    if(table_to_sheet.length<=0)
+                                    if (table_to_sheet.length <= 0)
                                         toastr.error("Aucune ligne exacte n'a été générée");
                                     else
-                                        openDownloadDialog(sheet2blob(sheet), 'calc_'+(+(new Date()))+'.xlsx');
+                                        openDownloadDialog(sheet2blob(sheet), 'calc_' + (+(new Date())) + '.xlsx');
                                 },
                             }
-                        }]
-                    },
-                ]
-            },
-            { view: "resizer" },
-            {
+                        }
+                    ]
+                }, ]
+            }, {
+                view: "resizer"
+            }, {
                 gravity: 2,
                 id: "theIframe",
                 view: "iframe",
@@ -337,53 +344,278 @@
             }]
         })
 
-        function generate(value){
-            var P = { A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, I: 9, J: 10, K: 11, L: 12, M: 13, N: 14, O: 15, P: 16, Q: 17, R: 18, S: 19, T: 20, U: 21, V: 22, W: 23, X: 24, Y: 25, Z: 26, " ": 0 },
-            Q = { A: 26, B: 25, C: 24, D: 23, E: 22, F: 21, G: 20, H: 19, I: 18, J: 17, K: 16, L: 15, M: 14, N: 13, O: 12, P: 11, Q: 10, R: 9, S: 8, T: 7, U: 6, V: 5, W: 4, X: 3, Y: 2, Z: 1, " ": 0 },
-            R = { A: 36, B: 37, C: 38, D: 39, E: 40, F: 41, G: 42, H: 43, I: 44, J: 45, K: 46, L: 47, M: 48, N: 49, O: 50, P: 51, Q: 52, R: 53, S: 54, T: 55, U: 56, V: 57, W: 58, X: 59, Y: 60, Z: 61, " ": 0 },
-            T = { A: 61, B: 60, C: 59, D: 58, E: 57, F: 56, G: 55, H: 54, I: 53, J: 52, K: 51, L: 50, M: 49, N: 48, O: 47, P: 46, Q: 45, R: 44, S: 43, T: 42, U: 41, V: 40, W: 39, X: 38, Y: 37, Z: 36, " ": 0 },
-            V = { A: 100, B: 101, C: 102, D: 103, E: 104, F: 105, G: 106, H: 107, I: 108, J: 109, K: 110, L: 111, M: 112, N: 113, O: 114, P: 115, Q: 116, R: 117, S: 118, T: 119, U: 120, V: 121, W: 122, X: 123, Y: 124, Z: 125, " ": 0 },
-            W = { A: 125, B: 124, C: 123, D: 122, E: 121, F: 120, G: 119, H: 118, I: 117, J: 116, K: 115, L: 114, M: 113, N: 112, O: 111, P: 110, Q: 109, R: 108, S: 107, T: 106, U: 105, V: 104, W: 103, X: 102, Y: 101, Z: 100, " ": 0 };
+        function generate(value) {
+            var P = {
+                    A: 1,
+                    B: 2,
+                    C: 3,
+                    D: 4,
+                    E: 5,
+                    F: 6,
+                    G: 7,
+                    H: 8,
+                    I: 9,
+                    J: 10,
+                    K: 11,
+                    L: 12,
+                    M: 13,
+                    N: 14,
+                    O: 15,
+                    P: 16,
+                    Q: 17,
+                    R: 18,
+                    S: 19,
+                    T: 20,
+                    U: 21,
+                    V: 22,
+                    W: 23,
+                    X: 24,
+                    Y: 25,
+                    Z: 26,
+                    " ": 0
+                },
+                Q = {
+                    A: 26,
+                    B: 25,
+                    C: 24,
+                    D: 23,
+                    E: 22,
+                    F: 21,
+                    G: 20,
+                    H: 19,
+                    I: 18,
+                    J: 17,
+                    K: 16,
+                    L: 15,
+                    M: 14,
+                    N: 13,
+                    O: 12,
+                    P: 11,
+                    Q: 10,
+                    R: 9,
+                    S: 8,
+                    T: 7,
+                    U: 6,
+                    V: 5,
+                    W: 4,
+                    X: 3,
+                    Y: 2,
+                    Z: 1,
+                    " ": 0
+                },
+                R = {
+                    A: 36,
+                    B: 37,
+                    C: 38,
+                    D: 39,
+                    E: 40,
+                    F: 41,
+                    G: 42,
+                    H: 43,
+                    I: 44,
+                    J: 45,
+                    K: 46,
+                    L: 47,
+                    M: 48,
+                    N: 49,
+                    O: 50,
+                    P: 51,
+                    Q: 52,
+                    R: 53,
+                    S: 54,
+                    T: 55,
+                    U: 56,
+                    V: 57,
+                    W: 58,
+                    X: 59,
+                    Y: 60,
+                    Z: 61,
+                    " ": 0
+                },
+                T = {
+                    A: 61,
+                    B: 60,
+                    C: 59,
+                    D: 58,
+                    E: 57,
+                    F: 56,
+                    G: 55,
+                    H: 54,
+                    I: 53,
+                    J: 52,
+                    K: 51,
+                    L: 50,
+                    M: 49,
+                    N: 48,
+                    O: 47,
+                    P: 46,
+                    Q: 45,
+                    R: 44,
+                    S: 43,
+                    T: 42,
+                    U: 41,
+                    V: 40,
+                    W: 39,
+                    X: 38,
+                    Y: 37,
+                    Z: 36,
+                    " ": 0
+                },
+                V = {
+                    A: 100,
+                    B: 101,
+                    C: 102,
+                    D: 103,
+                    E: 104,
+                    F: 105,
+                    G: 106,
+                    H: 107,
+                    I: 108,
+                    J: 109,
+                    K: 110,
+                    L: 111,
+                    M: 112,
+                    N: 113,
+                    O: 114,
+                    P: 115,
+                    Q: 116,
+                    R: 117,
+                    S: 118,
+                    T: 119,
+                    U: 120,
+                    V: 121,
+                    W: 122,
+                    X: 123,
+                    Y: 124,
+                    Z: 125,
+                    " ": 0
+                },
+                W = {
+                    A: 125,
+                    B: 124,
+                    C: 123,
+                    D: 122,
+                    E: 121,
+                    F: 120,
+                    G: 119,
+                    H: 118,
+                    I: 117,
+                    J: 116,
+                    K: 115,
+                    L: 114,
+                    M: 113,
+                    N: 112,
+                    O: 111,
+                    P: 110,
+                    Q: 109,
+                    R: 108,
+                    S: 107,
+                    T: 106,
+                    U: 105,
+                    V: 104,
+                    W: 103,
+                    X: 102,
+                    Y: 101,
+                    Z: 100,
+                    " ": 0
+                };
 
             function n(e) {
                 var t;
 
                 switch (e) {
-                    case 0: t = "zero"; break;
-                    case 1: t = "un"; break;
-                    case 2: t = "deux"; break;
-                    case 3: t = "trois"; break;
-                    case 4: t = "quatre"; break;
-                    case 5: t = "cinq"; break;
-                    case 6: t = "six"; break;
-                    case 7: t = "sept"; break;
-                    case 8: t = "huit"; break;
-                    case 9: t = "neuf"
-                }return t
+                    case 0:
+                        t = "zero";
+                        break;
+                    case 1:
+                        t = "un";
+                        break;
+                    case 2:
+                        t = "deux";
+                        break;
+                    case 3:
+                        t = "trois";
+                        break;
+                    case 4:
+                        t = "quatre";
+                        break;
+                    case 5:
+                        t = "cinq";
+                        break;
+                    case 6:
+                        t = "six";
+                        break;
+                    case 7:
+                        t = "sept";
+                        break;
+                    case 8:
+                        t = "huit";
+                        break;
+                    case 9:
+                        t = "neuf"
+                }
+                return t
             }
+
             function r(e) {
                 switch (e) {
-                    case 10: dizaine = "dix"; break;
-                    case 11: dizaine = "onze"; break;
-                    case 12: dizaine = "douze"; break;
-                    case 13: dizaine = "treize"; break;
-                    case 14: dizaine = "quatorze"; break;
-                    case 15: dizaine = "quinze"; break;
-                    case 16: dizaine = "seize"; break;
-                    case 17: dizaine = "dix-sept"; break;
-                    case 18: dizaine = "dix-huit"; break;
-                    case 19: dizaine = "dix-neuf"; break;
-                    case 20: dizaine = "vingt"; break;
-                    case 30: dizaine = "trente"; break;
-                    case 40: dizaine = "quarante"; break;
-                    case 50: dizaine = "cinquante"; break;
-                    case 60: dizaine = "soixante"; break;
-                    case 70: dizaine = "soixante-dix"; break;
-                    case 80: dizaine = "quatre-vingt"; break;
-                    case 90: dizaine = "quatre-vingt-dix"
+                    case 10:
+                        dizaine = "dix";
+                        break;
+                    case 11:
+                        dizaine = "onze";
+                        break;
+                    case 12:
+                        dizaine = "douze";
+                        break;
+                    case 13:
+                        dizaine = "treize";
+                        break;
+                    case 14:
+                        dizaine = "quatorze";
+                        break;
+                    case 15:
+                        dizaine = "quinze";
+                        break;
+                    case 16:
+                        dizaine = "seize";
+                        break;
+                    case 17:
+                        dizaine = "dix-sept";
+                        break;
+                    case 18:
+                        dizaine = "dix-huit";
+                        break;
+                    case 19:
+                        dizaine = "dix-neuf";
+                        break;
+                    case 20:
+                        dizaine = "vingt";
+                        break;
+                    case 30:
+                        dizaine = "trente";
+                        break;
+                    case 40:
+                        dizaine = "quarante";
+                        break;
+                    case 50:
+                        dizaine = "cinquante";
+                        break;
+                    case 60:
+                        dizaine = "soixante";
+                        break;
+                    case 70:
+                        dizaine = "soixante-dix";
+                        break;
+                    case 80:
+                        dizaine = "quatre-vingt";
+                        break;
+                    case 90:
+                        dizaine = "quatre-vingt-dix"
                 }
                 return dizaine
             }
+
             function _(e) {
                 var t, a, s, i = "";
 
@@ -394,28 +626,52 @@
                 if (s = parseFloat(e.toString().replace(/ /gi, "")), Math.ceil(s) != s) return "Nombre avec virgule non gere.";
 
                 switch (s.toString().length) {
-                    case 1: i = n(s); break;
+                    case 1:
+                        i = n(s);
+                        break;
 
-                    case 2: 19 < s ? (t = Math.floor(s / 10), a = s % 10, s < 71 || 79 < s && s < 91 ? (console.log(a), 0 == a && (i = r(10 * t)), 1 == a && (i = 81 == s ? r(10 * t) + "-" + n(a) : r(10 * t) + "-et-" + n(a)), 1 < a && (i = r(10 * t) + "-" + n(a))) : i = 71 == s ? r(10 * (t - 1)) + "-et-" + r(10 + a) : r(10 * (t - 1)) + "-" + r(10 + a)) : i = r(s); break;
-                    case 3: a = s % 100, 1 == (t = Math.floor(s / 100)) && 0 == a && (i = "cent"), 1 == t && 0 != a && (i = "cent " + _(a)), 1 < t && 0 == a && (i = n(t) + " cents"), 1 < t && 0 != a && (i = n(t) + " cent " + _(a)); break;
-                    case 4: case 5: case 6: a = s - 1e3 * (t = Math.floor(s / 1e3)), 1 == t && 0 == a && (i = "mille"), 1 == t && 0 != a && (i = "mille " + _(a)), 1 < t && 0 == a && (i = _(t) + " mille"), 1 < t && 0 != a && (i = _(t) + " mille " + _(a)); break;
-                    case 7: case 8: case 9: a = s % 1e6, 1 == (t = Math.floor(s / 1e6)) && 0 == a && (i = "un million"), 1 == t && 0 != a && (i = "un million " + _(a)), 1 < t && 0 == a && (i = _(t) + " millions"), 1 < t && 0 != a && (i = _(t) + " millions " + _(a)); break;
-                    case 10: case 11: case 12: a = s - 1e9 * (t = Math.floor(s / 1e9)), 1 == t && 0 == a && (i = "un milliard"), 1 == t && 0 != a && (i = "un milliard " + _(a)), 1 < t && 0 == a && (i = _(t) + " milliards"), 1 < t && 0 != a && (i = _(t) + " milliards " + _(a)); break;
-                    case 13: case 14: case 15: a = s - 1e12 * (t = Math.floor(s / 1e12)), 1 == t && 0 == a && (i = "un billion"), 1 == t && 0 != a && (i = "un billion " + _(a)), 1 < t && 0 == a && (i = _(t) + " billions"), 1 < t && 0 != a && (i = _(t) + " billions " + _(a))
-                }return "quatre-vingt" == i.substr(i.length - "quatre-vingt".length, "quatre-vingt".length) && (i += "s"), i
+                    case 2:
+                        19 < s ? (t = Math.floor(s / 10), a = s % 10, s < 71 || 79 < s && s < 91 ? (console.log(a), 0 == a && (i = r(10 * t)), 1 == a && (i = 81 == s ? r(10 * t) + "-" + n(a) : r(10 * t) + "-et-" + n(a)), 1 < a && (i = r(10 * t) + "-" + n(a))) : i = 71 == s ? r(10 * (t - 1)) + "-et-" + r(10 + a) : r(10 * (t - 1)) + "-" + r(10 + a)) : i = r(s);
+                        break;
+                    case 3:
+                        a = s % 100, 1 == (t = Math.floor(s / 100)) && 0 == a && (i = "cent"), 1 == t && 0 != a && (i = "cent " + _(a)), 1 < t && 0 == a && (i = n(t) + " cents"), 1 < t && 0 != a && (i = n(t) + " cent " + _(a));
+                        break;
+                    case 4:
+                    case 5:
+                    case 6:
+                        a = s - 1e3 * (t = Math.floor(s / 1e3)), 1 == t && 0 == a && (i = "mille"), 1 == t && 0 != a && (i = "mille " + _(a)), 1 < t && 0 == a && (i = _(t) + " mille"), 1 < t && 0 != a && (i = _(t) + " mille " + _(a));
+                        break;
+                    case 7:
+                    case 8:
+                    case 9:
+                        a = s % 1e6, 1 == (t = Math.floor(s / 1e6)) && 0 == a && (i = "un million"), 1 == t && 0 != a && (i = "un million " + _(a)), 1 < t && 0 == a && (i = _(t) + " millions"), 1 < t && 0 != a && (i = _(t) + " millions " + _(a));
+                        break;
+                    case 10:
+                    case 11:
+                    case 12:
+                        a = s - 1e9 * (t = Math.floor(s / 1e9)), 1 == t && 0 == a && (i = "un milliard"), 1 == t && 0 != a && (i = "un milliard " + _(a)), 1 < t && 0 == a && (i = _(t) + " milliards"), 1 < t && 0 != a && (i = _(t) + " milliards " + _(a));
+                        break;
+                    case 13:
+                    case 14:
+                    case 15:
+                        a = s - 1e12 * (t = Math.floor(s / 1e12)), 1 == t && 0 == a && (i = "un billion"), 1 == t && 0 != a && (i = "un billion " + _(a)), 1 < t && 0 == a && (i = _(t) + " billions"), 1 < t && 0 != a && (i = _(t) + " billions " + _(a))
+                }
+                return "quatre-vingt" == i.substr(i.length - "quatre-vingt".length, "quatre-vingt".length) && (i += "s"), i
             }
+
             function X(e) {
-                var t = e.length, a = [], s = [];
+                var t = e.length,
+                    a = [],
+                    s = [];
                 a[0] = "vide", s[0] = "vide";
-                for (var i = 0, n = 0, r = 0;
-                    r < t;
-                    r++)"0" == e[r] || "1" == e[r] || "2" == e[r] || "3" == e[r] || "4" == e[r] || "5" == e[r] || "6" == e[r] || "7" == e[r] || "8" == e[r] || "9" == e[r] ? 0 == i ? a[n += i = 1] = e[r] : a[n] += e[r] : i = 0;
+                for (var i = 0, n = 0, r = 0; r < t; r++) "0" == e[r] || "1" == e[r] || "2" == e[r] || "3" == e[r] || "4" == e[r] || "5" == e[r] || "6" == e[r] || "7" == e[r] || "8" == e[r] || "9" == e[r] ? 0 == i ? a[n += i = 1] = e[r] : a[n] += e[r] : i = 0;
                 for (var l = a.length, c = 0; c < l; c++)
                     if ("vide" != a[c]) {
                         1;
                         var o = _(parseInt(a[c]));
                         s[c] = o
-                    } var b = e;
+                    }
+                var b = e;
                 for (k = 0; k < l; k++)
                     b = (b = b.replace(a[k], s[k])).replace(/-/g, " ");
                 return b
@@ -426,14 +682,46 @@
             (t = t.replace(/[^a-zA-Z0-9 ]/g, "")).replace(/\s/g, ""), t = (t = X(t)).toUpperCase(), $(".mot").text(t);
             var a = value.toUpperCase();
             a.replace(/\s/g, ""), a = (a = X(a = a.replace(/[^a-zA-Z0-9 ]/g, ""))).toUpperCase(), $(".mot_nostra").text(a);
-            var s = t.length, i = 0, n = 0, r = 0, l = 0, c = 0, o = 0, b = 0, _ = 0, x = 0, v = 0, u = 0, g = 0, d = 0, k = 0, h = 0, p = 0, f = 0, z = 0, m = 0, M = 0, q = 0, C = 0, w = 0, U = 0, N = 0, S = 0, A = 0, I = 0, L = 0, Z = 0, E = 0, F = 0, O = 0, Y = 0, j = 0, B = 0;
+            var s = t.length,
+                i = 0,
+                n = 0,
+                r = 0,
+                l = 0,
+                c = 0,
+                o = 0,
+                b = 0,
+                _ = 0,
+                x = 0,
+                v = 0,
+                u = 0,
+                g = 0,
+                d = 0,
+                k = 0,
+                h = 0,
+                p = 0,
+                f = 0,
+                z = 0,
+                m = 0,
+                M = 0,
+                q = 0,
+                C = 0,
+                w = 0,
+                U = 0,
+                N = 0,
+                S = 0,
+                A = 0,
+                I = 0,
+                L = 0,
+                Z = 0,
+                E = 0,
+                F = 0,
+                O = 0,
+                Y = 0,
+                j = 0,
+                B = 0;
             "" == t && (B = j = Y = O = F = E = Z = L = I = A = S = N = U = w = C = q = M = m = z = f = p = h = k = d = g = u = v = x = _ = b = o = c = l = r = n = i = 0, $(".log").text(i), $(".base100").text(o), $(".base3").text(n), $(".base6").text(r), $(".base9").text(l), $(".base36").text(c), $(".log_inv").text(b), $(".base100_inv").text(_), $(".base3_inv").text(x), $(".base6_inv").text(v), $(".base9_inv").text(u), $(".base36_inv").text(g), $(".log_nostra").text(i), $(".base100_nostra").text(o), $(".base3_nostra").text(n), $(".base6_nostra").text(r), $(".base9_nostra").text(l), $(".base36_nostra").text(c), $(".log_inv_nostra").text(b), $(".base100_inv_nostra").text(_), $(".base3_inv_nostra").text(x), $(".base6_inv_nostra").text(v), $(".base9_inv_nostra").text(u), $(".base36_inv_nostra").text(g), $(".log_calcul").text(N), $(".base3_calcul").text(S), $(".base6_calcul").text(A), $(".base9_calcul").text(I), $(".base36_calcul").text(L), $(".base100_calcul").text(Z), $(".log_inv_calcul").text(E), $(".base3_inv_calcul").text(F), $(".base6_inv_calcul").text(O), $(".base9_inv_calcul").text(Y), $(".base36_inv_calcul").text(j), $(".base100_inv_calcul").text(B));
-            for (var D = 0;
-                D < s;
-                D++)i += P[t[D]], $(".log").text(i), n += 3 * P[t[D]], $(".base3").text(n), r += 6 * P[t[D]], $(".base6").text(r), l += 9 * P[t[D]], $(".base9").text(l), c += R[t[D]], $(".base36").text(c), o += V[t[D]], $(".base100").text(o), b += Q[t[D]], $(".log_inv").text(b), _ += 3 * Q[t[D]], $(".base3_inv").text(_), x += 6 * Q[t[D]], $(".base6_inv").text(x), v += 9 * Q[t[D]], $(".base9_inv").text(v), u += T[t[D]], $(".base36_inv").text(u), g += W[t[D]], $(".base100_inv").text(g), N = i - b, $(".log_calcul").text(N), Z = o - g, $(".base100_calcul").text(Z), S = n - _, $(".base3_calcul").text(S), A = r - x, $(".base6_calcul").text(A), I = l - v, $(".base9_calcul").text(I), L = c - u, $(".base36_calcul").text(L), E = b - i, $(".log_inv_calcul").text(E), B = g - o, $(".base100_inv_calcul").text(B), F = _ - n, $(".base3_inv_calcul").text(F), O = x - r, $(".base6_inv_calcul").text(O), Y = v - l, $(".base9_inv_calcul").text(Y), j = u - c, $(".base36_inv_calcul").text(j);
-            for (var G = (a = a.split("A").join("").split("E").join("").split("I").join("").split("O").join("").split("U").join("").split("Y").join("")).length, H = 0;
-                H < G;
-                H++)d += P[a[H]], $(".log_nostra").text(d), k += 3 * P[a[H]], $(".base3_nostra").text(k), h += 6 * P[a[H]], $(".base6_nostra").text(h), p += 9 * P[a[H]], $(".base9_nostra").text(p), f += R[a[H]], $(".base36_nostra").text(f), z += V[a[H]], $(".base100_nostra").text(z), m += Q[a[H]], $(".log_inv_nostra").text(m), M += 3 * Q[a[H]], $(".base3_inv_nostra").text(M), q += 6 * Q[a[H]], $(".base6_inv_nostra").text(q), C += 9 * Q[a[H]], $(".base9_inv_nostra").text(C), w += T[a[H]], $(".base36_inv_nostra").text(w), U += W[a[H]], $(".base100_inv_nostra").text(U);
+            for (var D = 0; D < s; D++) i += P[t[D]], $(".log").text(i), n += 3 * P[t[D]], $(".base3").text(n), r += 6 * P[t[D]], $(".base6").text(r), l += 9 * P[t[D]], $(".base9").text(l), c += R[t[D]], $(".base36").text(c), o += V[t[D]], $(".base100").text(o), b += Q[t[D]], $(".log_inv").text(b), _ += 3 * Q[t[D]], $(".base3_inv").text(_), x += 6 * Q[t[D]], $(".base6_inv").text(x), v += 9 * Q[t[D]], $(".base9_inv").text(v), u += T[t[D]], $(".base36_inv").text(u), g += W[t[D]], $(".base100_inv").text(g), N = i - b, $(".log_calcul").text(N), Z = o - g, $(".base100_calcul").text(Z), S = n - _, $(".base3_calcul").text(S), A = r - x, $(".base6_calcul").text(A), I = l - v, $(".base9_calcul").text(I), L = c - u, $(".base36_calcul").text(L), E = b - i, $(".log_inv_calcul").text(E), B = g - o, $(".base100_inv_calcul").text(B), F = _ - n, $(".base3_inv_calcul").text(F), O = x - r, $(".base6_inv_calcul").text(O), Y = v - l, $(".base9_inv_calcul").text(Y), j = u - c, $(".base36_inv_calcul").text(j);
+            for (var G = (a = a.split("A").join("").split("E").join("").split("I").join("").split("O").join("").split("U").join("").split("Y").join("")).length, H = 0; H < G; H++) d += P[a[H]], $(".log_nostra").text(d), k += 3 * P[a[H]], $(".base3_nostra").text(k), h += 6 * P[a[H]], $(".base6_nostra").text(h), p += 9 * P[a[H]], $(".base9_nostra").text(p), f += R[a[H]], $(".base36_nostra").text(f), z += V[a[H]], $(".base100_nostra").text(z), m += Q[a[H]], $(".log_inv_nostra").text(m), M += 3 * Q[a[H]], $(".base3_inv_nostra").text(M), q += 6 * Q[a[H]], $(".base6_inv_nostra").text(q), C += 9 * Q[a[H]], $(".base9_inv_nostra").text(C), w += T[a[H]], $(".base36_inv_nostra").text(w), U += W[a[H]], $(".base100_inv_nostra").text(U);
             var J = ["111", "222", "333", "444", "555", "666", "777", "1998"];
             var J1 = ["367", "367", "370", "371"];
 
@@ -450,7 +738,10 @@
             var regex9 = new RegExp("^(.)*9(.)*9(.)*9(.)*$");
             var regex98 = new RegExp("^(.)*1(.)*9(.)*9(.)*8(.)*$");
 
-            var _foundi = 0; var _foundn = 0; var _first = 0; var _index = 0;
+            var _foundi = 0;
+            var _foundn = 0;
+            var _first = 0;
+            var _index = 0;
             $(".res_inverse").css("color", "white");
             $(".res_normal").css("color", "white");
             $(".res_nostra_normal").css("color", "#529700");
@@ -509,7 +800,7 @@
                 if (_marc.length > 0) {
                     var regexc = new RegExp("^" + _marc + "$");
                     var _found = 0;
-                    $(".all").each(function () {
+                    $(".all").each(function() {
                         //if (regexc.test($(this).text() )){$(this).css("color","red");_found=1;}
                     });
                     //$('.marqueur').val("N’oublie pas,je ne t’offre que la Vérité,rien de plus...Une projection mentale de ton moi digitale");
@@ -519,113 +810,270 @@
             }
 
             function _set123(a, b) {
-                var _found = 0; var _total = 0; var _total9 = 0; var _total1 = 0; var _total2 = 0; var _total3 = 0;
+                var _found = 0;
+                var _total = 0;
+                var _total9 = 0;
+                var _total1 = 0;
+                var _total2 = 0;
+                var _total3 = 0;
                 $(a).css("color", "yellow");
-                $(b).each(function () {
-                    if (regex1.test($(this).text())) { $(this).css("color", "red"); _total1 = 1; }
-                    if (regex2.test($(this).text())) { $(this).css("color", "red"); _total2 = 1; }
-                    if (regex3.test($(this).text())) { $(this).css("color", "red"); _total3 = 1; }
+                $(b).each(function() {
+                    if (regex1.test($(this).text())) {
+                        $(this).css("color", "red");
+                        _total1 = 1;
+                    }
+                    if (regex2.test($(this).text())) {
+                        $(this).css("color", "red");
+                        _total2 = 1;
+                    }
+                    if (regex3.test($(this).text())) {
+                        $(this).css("color", "red");
+                        _total3 = 1;
+                    }
                 });
                 _total = _total1 + _total2 + _total3;
-                if (_total < 3) { $(b).css("color", "white"); _found = 0; }
+                if (_total < 3) {
+                    $(b).css("color", "white");
+                    _found = 0;
+                }
                 _total = 0;
             }
+
             function _set222(a, b) {
 
-                var _found = 0; var _total = 0; var _total9 = 0;
+                var _found = 0;
+                var _total = 0;
+                var _total9 = 0;
                 $(a).css("color", "yellow");
-                if (regex2.test($(b).text())) { $(b).css("color", "red"); _total += 1; }
+                if (regex2.test($(b).text())) {
+                    $(b).css("color", "red");
+                    _total += 1;
+                }
 
-                if (_total < 1) { $(b).css("color", "white"); _found = 0; }
+                if (_total < 1) {
+                    $(b).css("color", "white");
+                    _found = 0;
+                }
                 _total = 0;
             }
+
             function _set246(a, b) {
-                var _found = 0; var _total = 0; var _total1 = 0; var _total2 = 0; var _total3 = 0; var _total9 = 0;
+                var _found = 0;
+                var _total = 0;
+                var _total1 = 0;
+                var _total2 = 0;
+                var _total3 = 0;
+                var _total9 = 0;
                 $(a).css("color", "yellow");
-                $(b).each(function () {
-                    if (regex2.test($(this).text())) { $(this).css("color", "red"); _total1 = 1; }
-                    if (regex4.test($(this).text())) { $(this).css("color", "red"); _total2 = 1; }
-                    if (regex6.test($(this).text())) { $(this).css("color", "red"); _total3 = 1; }
+                $(b).each(function() {
+                    if (regex2.test($(this).text())) {
+                        $(this).css("color", "red");
+                        _total1 = 1;
+                    }
+                    if (regex4.test($(this).text())) {
+                        $(this).css("color", "red");
+                        _total2 = 1;
+                    }
+                    if (regex6.test($(this).text())) {
+                        $(this).css("color", "red");
+                        _total3 = 1;
+                    }
                 });
                 _total = _total1 + _total2 + _total3;
-                if (_total < 3) { $(b).css("color", "white"); _found = 0; return false; }
+                if (_total < 3) {
+                    $(b).css("color", "white");
+                    _found = 0;
+                    return false;
+                }
                 _total = 0;
                 return true;
             }
 
             function _setfifferentsCas(a, c) {
 
-                var _found = 0; var _total = 0; var _total1 = 0; var _total2 = 0; var _total3 = 0; var _total9 = 0;
-                $(a).each(function () {
-                    if (regex1.test($(this).text())) { $(this).css("color", "red"); _total1 = 1; }
-                    if (regex3.test($(this).text())) { $(this).css("color", "red"); _total2 = 1; }
-                    if (regex6.test($(this).text())) { $(this).css("color", "red"); _total3 = 1; }
+                var _found = 0;
+                var _total = 0;
+                var _total1 = 0;
+                var _total2 = 0;
+                var _total3 = 0;
+                var _total9 = 0;
+                $(a).each(function() {
+                    if (regex1.test($(this).text())) {
+                        $(this).css("color", "red");
+                        _total1 = 1;
+                    }
+                    if (regex3.test($(this).text())) {
+                        $(this).css("color", "red");
+                        _total2 = 1;
+                    }
+                    if (regex6.test($(this).text())) {
+                        $(this).css("color", "red");
+                        _total3 = 1;
+                    }
                 });
                 _total = _total1 + _total2 + _total3;
-                if (_total < 3) { _found = 0; $(a).css("color", c); $(this).css("background", "transparent"); }
-                else { _found = 1; }
+                if (_total < 3) {
+                    _found = 0;
+                    $(a).css("color", c);
+                    $(this).css("background", "transparent");
+                } else {
+                    _found = 1;
+                }
 
                 if (_found == 0) {
-                    _total = 0; _total1 = 0; _total2 = 0; _total3 = 0; _total9 = 0;
-                    $(a).each(function () {
-                        if (regexb.test($(this).text())) { $(this).css("color", "yellow"); }
-                        if (regex1.test($(this).text())) { $(this).css("color", "red"); _total1 = 1; }
-                        if (regex2.test($(this).text())) { $(this).css("color", "red"); _total2 = 1; }
-                        if (regex3.test($(this).text())) { $(this).css("color", "red"); _total3 = 1; }
+                    _total = 0;
+                    _total1 = 0;
+                    _total2 = 0;
+                    _total3 = 0;
+                    _total9 = 0;
+                    $(a).each(function() {
+                        if (regexb.test($(this).text())) {
+                            $(this).css("color", "yellow");
+                        }
+                        if (regex1.test($(this).text())) {
+                            $(this).css("color", "red");
+                            _total1 = 1;
+                        }
+                        if (regex2.test($(this).text())) {
+                            $(this).css("color", "red");
+                            _total2 = 1;
+                        }
+                        if (regex3.test($(this).text())) {
+                            $(this).css("color", "red");
+                            _total3 = 1;
+                        }
                     });
                     _total = _total1 + _total2 + _total3;
-                    if (_total < 3) { _found = 0; $(a).css("color", c); $(this).css("background", "transparent"); }
-                    else { _found = 1; }
+                    if (_total < 3) {
+                        _found = 0;
+                        $(a).css("color", c);
+                        $(this).css("background", "transparent");
+                    } else {
+                        _found = 1;
+                    }
                 }
 
                 if (_found == 0) {
-                    _total = 0; _total1 = 0; _total2 = 0; _total3 = 0; _total9 = 0;
-                    $(a).each(function () {
-                        if (regex2.test($(this).text())) { $(this).css("color", "red"); _total1 = 1; }
-                        if (regex6.test($(this).text())) { $(this).css("color", "red"); _total2 = 1; }
-                        if (regex98.test($(this).text())) { $(this).css("color", "red"); $(this).css("background", "transparent"); _total9 += 1; }
+                    _total = 0;
+                    _total1 = 0;
+                    _total2 = 0;
+                    _total3 = 0;
+                    _total9 = 0;
+                    $(a).each(function() {
+                        if (regex2.test($(this).text())) {
+                            $(this).css("color", "red");
+                            _total1 = 1;
+                        }
+                        if (regex6.test($(this).text())) {
+                            $(this).css("color", "red");
+                            _total2 = 1;
+                        }
+                        if (regex98.test($(this).text())) {
+                            $(this).css("color", "red");
+                            $(this).css("background", "transparent");
+                            _total9 += 1;
+                        }
                     });
                     _total = _total1 + _total2;
-                    if (_total > 1 && _total9 > 0) { _found = 1; }
-                    else { _found = 0; $(a).css("color", c); $(this).css("background", "transparent"); }
+                    if (_total > 1 && _total9 > 0) {
+                        _found = 1;
+                    } else {
+                        _found = 0;
+                        $(a).css("color", c);
+                        $(this).css("background", "transparent");
+                    }
                 }
 
                 if (_found == 0) {
-                    _total = 0; _total1 = 0; _total2 = 0; _total3 = 0; _total9 = 0;
+                    _total = 0;
+                    _total1 = 0;
+                    _total2 = 0;
+                    _total3 = 0;
+                    _total9 = 0;
 
-                    $(a).each(function () {
+                    $(a).each(function() {
 
-                        if (regex3.test($(this).text())) { $(this).css("color", "red"); _total1 = 1; }
-                        if (regex6.test($(this).text())) { $(this).css("color", "red"); _total2 = 1; }
-                        if (regex98.test($(this).text())) { $(this).css("color", "red"); $(this).css("background", "transparent"); _total9 += 1; }
+                        if (regex3.test($(this).text())) {
+                            $(this).css("color", "red");
+                            _total1 = 1;
+                        }
+                        if (regex6.test($(this).text())) {
+                            $(this).css("color", "red");
+                            _total2 = 1;
+                        }
+                        if (regex98.test($(this).text())) {
+                            $(this).css("color", "red");
+                            $(this).css("background", "transparent");
+                            _total9 += 1;
+                        }
                     });
                     _total = _total1 + _total2;
-                    if (_total > 1 && _total9 > 0) { _found = 1; }
-                    else { _found = 0; $(a).css("color", c); $(this).css("background", "transparent"); }
+                    if (_total > 1 && _total9 > 0) {
+                        _found = 1;
+                    } else {
+                        _found = 0;
+                        $(a).css("color", c);
+                        $(this).css("background", "transparent");
+                    }
                 }
 
                 if (_found == 0) {
-                    _total = 0; _total1 = 0; _total2 = 0; _total3 = 0; _total9 = 0;
-                    $(a).each(function () {
+                    _total = 0;
+                    _total1 = 0;
+                    _total2 = 0;
+                    _total3 = 0;
+                    _total9 = 0;
+                    $(a).each(function() {
 
-                        if (regex3.test($(this).text())) { $(this).css("color", "red"); _total1 = 1; }
-                        if (regex9.test($(this).text())) { $(this).css("color", "red"); _total2 = 1; }
-                        if (regex98.test($(this).text())) { $(this).css("color", "red"); $(this).css("background", "transparent"); _total9 += 1; }
+                        if (regex3.test($(this).text())) {
+                            $(this).css("color", "red");
+                            _total1 = 1;
+                        }
+                        if (regex9.test($(this).text())) {
+                            $(this).css("color", "red");
+                            _total2 = 1;
+                        }
+                        if (regex98.test($(this).text())) {
+                            $(this).css("color", "red");
+                            $(this).css("background", "transparent");
+                            _total9 += 1;
+                        }
                     });
                     _total = _total1 + _total2;
-                    if (_total > 1 && _total9 > 0) { _found = 1; }
-                    else { _found = 0; $(a).css("color", c); $(this).css("background", "transparent"); }
+                    if (_total > 1 && _total9 > 0) {
+                        _found = 1;
+                    } else {
+                        _found = 0;
+                        $(a).css("color", c);
+                        $(this).css("background", "transparent");
+                    }
                 }
 
                 if (_found == 0) {
-                    _total = 0; _total1 = 0; _total2 = 0; _total3 = 0; _total9 = 0;
-                    $(a).each(function () {
-                        if (regex6.test($(this).text())) { $(this).css("color", "red"); _total += 1; }
-                        if (regex98.test($(this).text())) { $(this).css("color", "red"); $(this).css("background", "transparent"); _total9 += 1; }
+                    _total = 0;
+                    _total1 = 0;
+                    _total2 = 0;
+                    _total3 = 0;
+                    _total9 = 0;
+                    $(a).each(function() {
+                        if (regex6.test($(this).text())) {
+                            $(this).css("color", "red");
+                            _total += 1;
+                        }
+                        if (regex98.test($(this).text())) {
+                            $(this).css("color", "red");
+                            $(this).css("background", "transparent");
+                            _total9 += 1;
+                        }
                     });
 
-                    if (_total > 0 && _total9 > 0) { _found = 1; }
-                    else { _found = 0; $(a).css("color", c); $(this).css("background", "transparent"); }
+                    if (_total > 0 && _total9 > 0) {
+                        _found = 1;
+                    } else {
+                        _found = 0;
+                        $(a).css("color", c);
+                        $(this).css("background", "transparent");
+                    }
                 }
             }
 
@@ -636,9 +1084,7 @@
 
         <div id="titre">CALCULATEUR ALPHANUMÉRIQUE</div>
 
-        <input class="tableur" type="text" placeholder="Entrer votre phrase, mot..."><br>
-
-        Normal : <span class="mot"></span><br>
+        <input class="tableur" type="text" placeholder="Entrer votre phrase, mot..."><br> Normal : <span class="mot"></span><br>
         <span style="color:#529700;">Nostra : </span><span class="mot_nostra"></span>
 
         <div id="chiffre">
@@ -686,51 +1132,38 @@
                 <div id="table">
                     <span id="res_inverse1" class="res_inverse log_inv all">0</span>
                     <span id="res_nostra_inverse" class="res_nostra_inverse log_inv_nostra all">0</span>
-                    <span id="res_calcul_inverse" class="res_calcul_inverse log_inv_calcul all">0</span>
-
-                    Logique Inverse
+                    <span id="res_calcul_inverse" class="res_calcul_inverse log_inv_calcul all">0</span> Logique Inverse
                 </div>
                 <div id="table">
                     <span id="res_inverse2" class="res_inverse base3_inv all">0</span>
                     <span id="res_nostra_inverse" class="res_nostra_inverse base3_inv_nostra all">0</span>
-                    <span id="res_calcul_inverse" class="res_calcul_inverse base3_inv_calcul all">0</span>
-
-                    Base 3 Inverse
+                    <span id="res_calcul_inverse" class="res_calcul_inverse base3_inv_calcul all">0</span> Base 3 Inverse
                 </div>
                 <div id="table">
                     <span id="res_inverse" class="res_inverse base6_inv all">0</span>
                     <span id="res_nostra_inverse" class="res_nostra_inverse base6_inv_nostra all">0</span>
-                    <span id="res_calcul_inverse" class="res_calcul_inverse base6_inv_calcul all">0</span>
-
-                    Base 6 Inverse
+                    <span id="res_calcul_inverse" class="res_calcul_inverse base6_inv_calcul all">0</span> Base 6 Inverse
                 </div>
                 <div id="table">
                     <span id="res_inverse" class="res_inverse base9_inv all">0</span>
                     <span id="res_nostra_inverse" class="res_nostra_inverse base9_inv_nostra all">0</span>
-                    <span id="res_calcul_inverse" class="res_calcul_inverse base9_inv_calcul all">0</span>
-
-                    Base 9 Inverse
+                    <span id="res_calcul_inverse" class="res_calcul_inverse base9_inv_calcul all">0</span> Base 9 Inverse
                 </div>
                 <div id="table">
                     <span id="res_inverse" class="res_inverse base36_inv all">0</span>
                     <span id="res_nostra_inverse" class="res_nostra_inverse base36_inv_nostra all">0</span>
-                    <span id="res_calcul_inverse" class="res_calcul_inverse base36_inv_calcul all">0</span>
-
-                    Base 36 Inverse
+                    <span id="res_calcul_inverse" class="res_calcul_inverse base36_inv_calcul all">0</span> Base 36 Inverse
                 </div>
                 <div id="table">
                     <span id="res_inverse" class="res_inverse base100_inv all">0</span>
                     <span id="res_nostra_inverse" class="res_nostra_inverse base100_inv_nostra all">0</span>
-                    <span id="res_calcul_inverse" class="res_calcul_inverse base100_inv_calcul all">0</span>
-
-                    Base 100 Inverse
+                    <span id="res_calcul_inverse" class="res_calcul_inverse base100_inv_calcul all">0</span> Base 100 Inverse
                 </div>
             </div>
 
         </div>
 
-        <input class="marqueur" type="text"
-            placeholder="N’oublie pas,je ne t’offre que la Vérité,rien de plus...Une projection mentale de ton moi digitale"><br>
+        <input class="marqueur" type="text" placeholder="N’oublie pas,je ne t’offre que la Vérité,rien de plus...Une projection mentale de ton moi digitale"><br>
     </div>
 </body>
 

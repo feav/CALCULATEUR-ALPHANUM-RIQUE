@@ -14,14 +14,14 @@
             color: #aaa;
             background: #161616
         }
-
+        
         #tableur {
             position: absolute;
             display: none;
             width: 100%;
             text-align: center;
         }
-
+        
         .tableur,
         .marqueur {
             width: 90%;
@@ -34,25 +34,25 @@
             color: #aaa;
             transition: 0.5s;
         }
-
+        
         .tableur:focus,
         .marqueur:focus {
             border: 1px solid #fff;
             transition: 0.5s;
         }
-
+        
         .marqueur {
             width: 60%;
             padding: 5px;
             font-size: 15px;
         }
-
+        
         #chiffre {
             width: 100%;
             text-align: center;
             margin: 10px 0 0 0;
         }
-
+        
         #normal,
         #inverse {
             width: 44%;
@@ -60,84 +60,84 @@
             display: inline-block;
             font-size: 18px;
         }
-
+        
         #normal {
             text-align: left;
             padding: 0 0 0 5px;
             vertical-align: top;
         }
-
+        
         #inverse {
             text-align: right;
             padding: 0 5px 0 0;
             vertical-align: top;
         }
-
+        
         #res_normal {
             float: right;
             margin: 0 20px 0 0;
         }
-
+        
         #res_normal1 {
             float: right;
             margin: 0 20px 0 0;
         }
-
+        
         #res_normal2 {
             float: right;
             margin: 0 20px 0 0;
         }
-
+        
         #res_nostra_normal {
             float: right;
             margin: 0 20px 0 0;
             color: #529700;
         }
-
+        
         #res_calcul {
             float: right;
             margin: 0 50px 0 0;
             color: #db2323;
         }
-
+        
         #res_inverse {
             float: left;
             margin: 0 0 0 20px;
         }
-
+        
         #res_inverse1 {
             float: left;
             margin: 0 0 0 20px;
         }
-
+        
         #res_inverse2 {
             float: left;
             margin: 0 0 0 20px;
         }
-
+        
         #res_nostra_inverse {
             float: left;
             margin: 0 0 0 20px;
             color: #529700;
         }
-
+        
         #res_calcul_inverse {
             float: left;
             margin: 0 0 0 50px;
             color: #db2323;
         }
-
+        
         #titre {
             font-size: 30px;
             display: inline-block;
             margin: 20px 0 15px 0;
             font-family: NotoSerifSC;
         }
-
+        
         #table {
             margin: 30px 0 30px 0;
         }
-
+        
         a {
             color: #aaa;
             text-decoration: none;
@@ -151,9 +151,7 @@
 
         <div id="titre">CALCULATEUR ALPHANUMÉRIQUE</div>
 
-        <input class="tableur" type="text" placeholder="Entrer votre phrase, mot..."><br>
-
-        Normal : <span class="mot"></span><br>
+        <input class="tableur" type="text" placeholder="Entrer votre phrase, mot..."><br> Normal : <span class="mot"></span><br>
         <span style="color:#529700;">Nostra : </span><span class="mot_nostra"></span>
 
         <div id="chiffre">
@@ -201,51 +199,38 @@
                 <div id="table">
                     <span id="res_inverse1" class="res_inverse log_inv all">0</span>
                     <span id="res_nostra_inverse" class="res_nostra_inverse log_inv_nostra all">0</span>
-                    <span id="res_calcul_inverse" class="res_calcul_inverse log_inv_calcul all">0</span>
-
-                    Logique Inverse
+                    <span id="res_calcul_inverse" class="res_calcul_inverse log_inv_calcul all">0</span> Logique Inverse
                 </div>
                 <div id="table">
                     <span id="res_inverse2" class="res_inverse base3_inv all">0</span>
                     <span id="res_nostra_inverse" class="res_nostra_inverse base3_inv_nostra all">0</span>
-                    <span id="res_calcul_inverse" class="res_calcul_inverse base3_inv_calcul all">0</span>
-
-                    Base 3 Inverse
+                    <span id="res_calcul_inverse" class="res_calcul_inverse base3_inv_calcul all">0</span> Base 3 Inverse
                 </div>
                 <div id="table">
                     <span id="res_inverse" class="res_inverse base6_inv all">0</span>
                     <span id="res_nostra_inverse" class="res_nostra_inverse base6_inv_nostra all">0</span>
-                    <span id="res_calcul_inverse" class="res_calcul_inverse base6_inv_calcul all">0</span>
-
-                    Base 6 Inverse
+                    <span id="res_calcul_inverse" class="res_calcul_inverse base6_inv_calcul all">0</span> Base 6 Inverse
                 </div>
                 <div id="table">
                     <span id="res_inverse" class="res_inverse base9_inv all">0</span>
                     <span id="res_nostra_inverse" class="res_nostra_inverse base9_inv_nostra all">0</span>
-                    <span id="res_calcul_inverse" class="res_calcul_inverse base9_inv_calcul all">0</span>
-
-                    Base 9 Inverse
+                    <span id="res_calcul_inverse" class="res_calcul_inverse base9_inv_calcul all">0</span> Base 9 Inverse
                 </div>
                 <div id="table">
                     <span id="res_inverse" class="res_inverse base36_inv all">0</span>
                     <span id="res_nostra_inverse" class="res_nostra_inverse base36_inv_nostra all">0</span>
-                    <span id="res_calcul_inverse" class="res_calcul_inverse base36_inv_calcul all">0</span>
-
-                    Base 36 Inverse
+                    <span id="res_calcul_inverse" class="res_calcul_inverse base36_inv_calcul all">0</span> Base 36 Inverse
                 </div>
                 <div id="table">
                     <span id="res_inverse" class="res_inverse base100_inv all">0</span>
                     <span id="res_nostra_inverse" class="res_nostra_inverse base100_inv_nostra all">0</span>
-                    <span id="res_calcul_inverse" class="res_calcul_inverse base100_inv_calcul all">0</span>
-
-                    Base 100 Inverse
+                    <span id="res_calcul_inverse" class="res_calcul_inverse base100_inv_calcul all">0</span> Base 100 Inverse
                 </div>
             </div>
 
         </div>
 
-        <input class="marqueur" type="text"
-            placeholder="N’oublie pas,je ne t’offre que la Vérité,rien de plus...Une projection mentale de ton moi digitale"><br>
+        <input class="marqueur" type="text" placeholder="N’oublie pas,je ne t’offre que la Vérité,rien de plus...Une projection mentale de ton moi digitale"><br>
 
     </div>
 
@@ -267,7 +252,7 @@
             }
         };
 
-        if(getUrlParameter('text') != undefined)
+        if (getUrlParameter('text') != undefined)
             $(".tableur").val(atob(getUrlParameter('text')))
         $('.tableur').trigger('keyup');
     </script>

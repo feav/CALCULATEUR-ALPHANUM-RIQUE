@@ -15,6 +15,7 @@
     var blob = new Blob([s2ab(wbout)], {
         type: "application/octet-stream"
     });
+
     function s2ab(s) {
         var buf = new ArrayBuffer(s.length);
         var view = new Uint8Array(buf);
